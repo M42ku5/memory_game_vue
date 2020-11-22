@@ -61,10 +61,10 @@
                             @click="flipsCard(card)">
                             <div class="memorycard">
                                 <div class="card-front border rounded shadow">
-                                    <img src="assets/pattern.jpg" />
+                                    <img src="assets/pattern.jpg" alt="Verdeckte Memory-Karte" />
                                 </div>
                                 <div class="card-back rounded border">
-                                    <img :src="'assets/'+card.img" />
+                                    <img :src="'assets/'+card.img" alt="Aufgedeckte Memory-Karte" />
                                 </div>
                             </div>
                         </div>
