@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Memory Kartenspiel kostenlos online spielen" />
+    <meta name="keywords" content="Memory, Game, Spiel, Kartenspiel, Find pairs" />
+    <meta name="author" content="Markus Schmieder" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff" />
+
+    <title>Memory-Karten-Spiel</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Vue panel of DevTools plugin for Chrome and Firefox can be used in this mode -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="h5 text-center my-2">
+                <i class="fas fa-images mr-2"></i>Finde die Bild-Paare
+            </div>
+
+            <div class="d-flex justify-content-center py-1">
+                <span class="btn disabled btn-sm px-0 mr-3"><i class="fas fa-stopwatch mr-2"
+                        title="Spielzeit"></i>{{formatsMinutes}}:{{formatsSeconds}}</span>
+                <span class="btn disabled btn-sm px-0"><i class="fas fa-hand-pointer mr-2"
+                        title="Aufdeckungen"></i>{{turns}}</span>
+            </div>
+
+            <div class="text-center mt-1">
+                <div class="mb-1 px-3 py-1" :class="finish ? 'alert alert-success d-inline-block' : 'd-none'">
+                    Fertig, alle Bild-Paare gefunden!<button class="ml-2 my-2 btn btn-outline-secondary btn-sm"
+                        @click="resetsGame" :disabled="!start">
+                        <i class="fas fa-redo mr-2"></i>Zurücksetzen
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-sm-8 col-md-7 col-lg-5 col-xl-4 mx-auto min-width-340px">
+                    <div class="row justify-content-center">
+                        <div v-for="card in memoryCards" class="col-auto p-1 card-container"
+                            :class="{ 'flipped': card.isFlipped, 'matched' : card.isMatched, 'cursor-pointer': !finish }"
+                            @click="flipsCard(card)">
+                            <div class="memorycard">
+                                <div class="card-front border rounded shadow">
+                                    <img src="assets/pattern.jpg" />
+                                </div>
+                                <div class="card-back rounded border">
+                                    <img :src="'assets/'+card.img" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

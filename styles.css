@@ -1,0 +1,43 @@
+.card-container {
+    perspective: 1000;
+}
+
+.card-front,
+.card-back {
+    backface-visibility: hidden;
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.card-back {
+    transform: rotateY(-180deg);
+    width: auto;
+    left: 4px;
+    top: 4px;
+    position: absolute;
+}
+
+.card-back img,
+.card-front img {
+    width: 75px;
+    height: 75px;
+}
+
+.card-container.flipped .card-back {
+    transform: rotateY(0deg);
+}
+
+.card-container.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.matched {
+    opacity: 0.2;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
